@@ -1,3 +1,7 @@
+const input = document.querySelector('.creditCardInput')
+const btn = document.querySelector('.btn')
+const message = document.querySelector('.message')
+
 const isCreditCardNumberValid = (cardNumber) => {
 // parametreyi stringe dönüştürüyorum
         let str = cardNumber.toString()
@@ -40,6 +44,27 @@ const isCreditCardNumberValid = (cardNumber) => {
         return true
 }
 
+
+
+btn.addEventListener('click' , (e)=>{
+    e.preventDefault()
+    const value = input.value
+    if (isCreditCardNumberValid(value)) {
+        message.classList.add('valid')
+        message.textContent = 'Kredi kartı geçerli.'
+        setTimeout(() => {
+            message.classList.remove('valid')
+            input.value= ''
+        }, 2500);
+    }else if(!isCreditCardNumberValid(value)){
+        message.classList.add('notvalid')
+        message.textContent = 'Kredi kartı geçersiz!'
+        setTimeout(() => {
+            message.classList.remove('notvalid')
+            input.value= ''
+        }, 2500);
+    }
+})
 
 
 // true test case's
